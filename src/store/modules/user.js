@@ -1,15 +1,15 @@
 export default {
   namespaced: true,
-  state () {
+  state () { /// 写成一个函数可以避免参数相互影响,类似于data()
     return {
       // 用户信息
       profile: {
-        id: '',
+        id: '1',
         avatar: '',
-        nickname: '',
-        account: '',
-        mobile: '',
-        token: ''
+        nickname: '周杰伦',
+        account: '123',
+        mobile: '12344',
+        token: '123455xcvxvxvxvxv'
       }
     }
   },
