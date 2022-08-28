@@ -104,7 +104,10 @@ const routes = [
 // vue3.0 createRouter({}) 创建路由实例
 const router = createRouter({
   history: createWebHashHistory(), // 使用hash的路由模式
-  routes
+  routes,
+  scrollBehavior () {
+    return { left: 0, top: 0 }
+  }
 })
 
 // router.beforeEach((to, from, next) => {
