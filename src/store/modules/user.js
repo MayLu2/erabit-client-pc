@@ -4,12 +4,12 @@ export default {
     return {
       // 用户信息
       profile: {
-        id: '1',
+        id: '',
         avatar: '',
-        nickname: '周杰伦',
-        account: '123',
-        mobile: '12344',
-        token: '123455xcvxvxvxvxv'
+        nickname: '',
+        account: '',
+        mobile: '',
+        token: ''
       }
     }
   },

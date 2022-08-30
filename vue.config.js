@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    // 图片加载
+    // 图片加载--小于10kb的图片直接打包为base64的格式，避免加载图片时间过长出现白板
     config.module
       .rule('images')
       .use('url-loader')

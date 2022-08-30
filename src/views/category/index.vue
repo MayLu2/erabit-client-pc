@@ -5,13 +5,13 @@
         <!-- <XtxBread parentPath='category/105809' parentName="电器">{{空调}}</XtxBread> 组件实现-->
         <!-- render实现 -->
         <XtxBread>
-        <XtxBreadItem to="/">首页</XtxBreadItem>
-        <Transition name="fade-right" mode="out-in">
-          <XtxBreadItem :key="topCategory.id">{{topCategory.name}}</XtxBreadItem>
-        </Transition>
-      </XtxBread>
+          <XtxBreadItem to="/">首页</XtxBreadItem>
+          <Transition name="fade-right" mode="out-in">
+            <XtxBreadItem :key="topCategory.id">{{topCategory.name}}</XtxBreadItem>
+          </Transition>
+        </XtxBread>
         <!-- 轮播图 -->
-         <XtxCarousel :sliders="sliders" style="height:500px" />
+         <XtxCarousel :sliders="sliders" style="height:500px" autoPlay/>
         <!-- 所有二级分类 -->
       <div class="sub-list">
         <h3>全部分类</h3>

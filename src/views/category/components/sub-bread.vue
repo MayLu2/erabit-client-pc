@@ -16,14 +16,15 @@ export default {
   setup () {
     // 注意：setup中this不是当前vue实例
 
+    // 数据对象：{top:{id:name},sub:{id:name}}
     // 1. 获取二级分类的ID，在地址在路由中
     // route ===> this.$route
     const route = useRoute()
-    console.log(route.params.id)
+    // console.log(route.params.id)
     // 2. 获取vuex中的类目数据
     // store ===> this.$store
     const store = useStore()
-    console.log(store)
+    // console.log(store)
     // 3. 通过计算属性得到，二级类目的名称和ID，一级类目的名称和ID
     const category = computed(() => {
       const obj = {}
@@ -44,4 +45,33 @@ export default {
   }
 }
 </script>
-<style scoped lang="less"></style>
+<style scoped lang="less">
+  // 筛选区
+  .sub-filter {
+    background: #fff;
+    padding: 25px;
+    .item {
+      display: flex;
+      line-height: 40px;
+      .head {
+        width: 80px;
+        color: #999;
+      }
+      .body {
+        flex: 1;
+        a {
+          margin-right: 36px;
+          transition: all .3s;
+          display: inline-block;
+          &.active,
+          &:hover {
+            color: @xtxColor;
+          }
+        }
+      }
+    }
+    .xtx-skeleton {
+      padding: 10px 0;
+    }
+  }
+</style>
