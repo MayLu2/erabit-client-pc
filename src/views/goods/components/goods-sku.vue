@@ -145,6 +145,7 @@ export default {
           // 属性名：属性值 属性名1：属性值1 ... 这样的字符串
           specsText: sku.specs.reduce((p, c) => `${p} ${c.name}：${c.valueName}`, '').trim()
         })
+        console.log('sku改变')
       } else {
         /// 不完整
         // 父组件需要判断是否规格选择完整，不完整不能加购物车。
