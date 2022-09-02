@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "erabit-client-pc",
+      "script": "npm",
+      "args": "start"
+    }
+  ]
+}
