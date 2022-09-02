@@ -1,6 +1,6 @@
-// import { h } from 'vue'
+import { h } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import store from 'vuex'
+import store from '@/store'
 const Layout = () => import('@/views/Layout')
 const Home = () => import('@/views/home')
 const TopCategory = () => import('@/views/category/index')
@@ -75,16 +75,18 @@ const routes = [
             name: 'MemberHome',
             component: MemberHome
           },
-          { path: '/member/order', component: MemberOrder },
-          { path: '/member/order/:id', component: MemberOrderDetail }
-          // {
-          //   path: '/member/order',
-          //   component: { render: () => h(<RouterView />) },
-          //   children: [
-          //     { path: '', component: MemberOrder },
-          //     { path: ':id', component: MemberOrderDetail }
-          //   ]
-          // }
+          // vue2可以使用active-class可以直接激活的
+          // { path: '/member/order', component: MemberOrder },
+          // { path: '/member/order/:id', component: MemberOrderDetail }
+          {
+            // vue3.0 需要有嵌套关系才能模糊匹配
+            path: '/member/order',
+            component: { render: () => h(<RouterView />) },
+            children: [
+              { path: '', component: MemberOrder },
+              { path: ':id', component: MemberOrderDetail }
+            ]
+          }
         ]
       }
     ]
@@ -110,12 +112,12 @@ const router = createRouter({
   }
 })
 
-// router.beforeEach((to, from, next) => {
-//   const { profile } = store.state.user
-//   if (!profile.token && to.path.startsWith('/member')) {
-//     return next('/login?redirectUrl=' + encodeURIComponent(to.fullPath))
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  const { profile } = store.state.user
+  if (!profile.token && to.path.startsWith('/member')) {
+    return next('/login?redirectUrl=' + encodeURIComponent(to.fullPath))
+  }
+  next()
+})
 
 export default router

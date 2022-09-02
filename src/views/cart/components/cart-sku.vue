@@ -6,15 +6,15 @@
     </div>
     <div class="layer" v-if="visible">
       <div v-if="loading" class="loading"></div>
-      <GoodsSku @change="changeSku" :skuId="skuId" v-else :goods="goods" />
+      <GoodsSku v-else @change="changeSku" :goods="goods" :skuId="skuId"></GoodsSku>
       <XtxButton @click="submit" v-if="!loading" type="primary" size="mini" style="margin-left:60px">确认</XtxButton>
     </div>
   </div>
 </template>
 <script>
-import { ref } from 'vue'
-import { onClickOutside } from '@vueuse/core'
 import { getGoodsSku } from '@/api/cart'
+import { onClickOutside } from '@vueuse/core'
+import { ref } from 'vue'
 import GoodsSku from '@/views/goods/components/goods-sku'
 export default {
   name: 'CartSku',
@@ -31,12 +31,11 @@ export default {
   },
   setup (props, { emit }) {
     const visible = ref(false)
-    const goods = ref(null)
     const loading = ref(false)
-    // 打开
+    const goods = ref(null)
+    // 打开,并获取sku数据
     const open = () => {
       visible.value = true
-      // 获取商品数据（specs,skus）
       loading.value = true
       getGoodsSku(props.skuId).then(data => {
         goods.value = data.result
@@ -62,7 +61,6 @@ export default {
     const changeSku = (sku) => {
       currSku.value = sku
     }
-
     // 点击确认的时候，更改后的sku信息提交给父组件（购物车组件）
     const submit = () => {
       // 当你currSku有值，且skuId和默认的skuId不同
@@ -71,8 +69,7 @@ export default {
         close()
       }
     }
-
-    return { visible, toggle, target, goods, loading, changeSku, submit }
+    return { visible, toggle, target, loading, goods, changeSku, submit }
   }
 }
 </script>

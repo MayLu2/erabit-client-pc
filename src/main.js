@@ -12,5 +12,5 @@ import 'normalize.css'
 import '@/assets/styles/common.less'
 
 // mockjs
-// import '@/mock'
+import '@/mock'
 createApp(App).use(store).use(router).use(UI).mount('#app')/// .use挂载插件
